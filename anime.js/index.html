@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="js/anime.min.js"></script> 
+        <style type="text/css">
+.object {
+    width: 100px;
+    height: 100px;
+    background: #ffb6c1;
+    position: absolute;
+}
+
+.wrapper {
+    width: 80%;
+    overflow: hidden;
+    padding: 200px;
+    margin: auto;
+}
+
+button {
+    width: 120px;
+    height: 45px;
+    background: #b6c1ff;
+    margin-top: 20px;
+    border-radius: 50px;
+    font-size: 17px;
+    color: white;
+    position: relative;
+    bottom: 100px;
+}
+        </style>
+    </head>
+    <body>
+
+<div class="wrapper">
+    <div class="object"></div>
+    <button onclick="reShape();">Reshape</button>
+</div>
+
+<script type="text/javascript">
+function reShape(){
+   anime({
+    targets: '.object',
+    right: '240px',
+    backgroundColor: '#ff8396',
+    borderRadius: ['100px'],
+    easing: 'easeInOutQuad',
+    right: '400px'
+});
+} 
+
+</script>
+
+    </body>
+</html>
