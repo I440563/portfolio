@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="week3.css">
+<link rel="stylesheet" href="js/BeerSlider.css">
+<script src="https://kit.fontawesome.com/fb6a8bb9cd.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="js/BeerSlider.js"></script>
+<title>Design Photography</title>
+
+</head>
+
+<body>
+  <div class="container">
+    
+    <header>
+      <h1 class="heading-font">Design Photography</h1>
+    </header>
+
+    <div id="slider" class="beer-slider" data-beer-label="before">
+      <img src="afbeeldingen/IMG_1296a.jpg" alt="">
+      <div class="beer-reveal" data-beer-label="after">
+      <img src="afbeeldingen/IMG_1296b.jpg" alt="">
+      </div>
+    </div>
+ 
+    <div id="slider2" class="beer-slider" data-beer-label="before">
+        <img src="afbeeldingen/IMG_1294a.jpg" alt="">
+        <div class="beer-reveal" data-beer-label="after">
+        <img src="afbeeldingen/IMG_1294b.jpg" alt="">
+        </div>
+    </div>
+  </div>
+
+<section></section>
+<button id="topBtn"><i class="fas fa-arrow-up"></i></button>
+
+  <script>
+  new BeerSlider(document.getElementById('slider'));
+  new BeerSlider(document.getElementById('slider2'));
+  </script>
+
+  <script type="text/javascript" src="main.js"></script>
+</body>
+</html>
