@@ -1,0 +1,16 @@
+{
+    "name": "Bach Kliniek By Sounding Bodies",
+    "short_name": "Bach Kliniek", 
+    "start_url": "/index.html", 
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#000000",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/img/icons/374x120_sounding_bodies_vibrate_15fps_v2.gif",
+            "type": "image/png",
+            "sizes": "144x144"
+        }
+    ]
+}
