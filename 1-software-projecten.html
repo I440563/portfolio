@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://kit.fontawesome.com/fb6a8bb9cd.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C# Software Projecten</title>
+    <link rel="icon" 
+    type="image/ico" 
+    href="afbeeldingen/favicon.ico">
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">
+        <ul class="logo_links">
+          <li><a href="index.html">Jenny Tran</a></li>
+      </ul>
+      </div>
+        <nav>
+        <ul class="nav_links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="work.html">Work</a></li>
+        </ul>
+      </nav>
+      </header>
+
+  <div class="container">
+    <a href="0-development.html" class="previous"> <div class="d"><b>&laquo; terug</b></div></a><br><br>
+  <div class="c">C# Software Projecten</div>
+
+    <br><br>
+<br><h2>1. Dobbelsteen </h2>
+<br><br>
+<img src="afbeeldingen1/dobbelsteen.PNG" width="500" class="center">
+<br><br>
+<h3>CODE:</h3>
+  <table>
+    <colgroup>
+      <col span="4" style="background-color: #f2f2f2">
+    </colgroup>
+    <tr>
+      <th><Keypad.h>
+
+        namespace _2.Dobbelsteen
+        {
+            partial class Form1
+            {
+                /// <summary>
+                /// Required designer variable.
+                /// </summary>
+                private System.ComponentModel.IContainer components = null;
+        
+                /// <summary>
+                /// Clean up any resources being used.
+                /// </summary>
+                /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+                protected override void Dispose(bool disposing)
+                {
+                    if (disposing && (components != null))
+                    {
+                        components.Dispose();
+                    }
+                    base.Dispose(disposing);
+                }
+        
+                #region Windows Form Designer generated code
+        
+                /// <summary>
+                /// Required method for Designer support - do not modify
+                /// the contents of this method with the code editor.
+                /// </summary>
+                private void InitializeComponent()
+                {
+                    this.pictureBox1 = new System.Windows.Forms.PictureBox();
+                    this.pictureBox4 = new System.Windows.Forms.PictureBox();
+                    this.pictureBox3 = new System.Windows.Forms.PictureBox();
+                    this.pictureBox2 = new System.Windows.Forms.PictureBox();
+                    this.pictureBox5 = new System.Windows.Forms.PictureBox();
+                    this.pictureBox6 = new System.Windows.Forms.PictureBox();
+                    this.button1 = new System.Windows.Forms.Button();
+                    ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+                    ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+                    ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+                    ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+                    ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+                    ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+                    this.SuspendLayout();
+                    // 
+                    // pictureBox1
+                    // 
+                    this.pictureBox1.BackgroundImage = global::_2.Dobbelsteen.Properties.Resources.d1;
+                    this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+                    this.pictureBox1.ErrorImage = global::_2.Dobbelsteen.Properties.Resources.d1;
+                    this.pictureBox1.Location = new System.Drawing.Point(60, 38);
+                    this.pictureBox1.Name = "pictureBox1";
+                    this.pictureBox1.Size = new System.Drawing.Size(160, 160);
+                    this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+                    this.pictureBox1.TabIndex = 0;
+                    this.pictureBox1.TabStop = false;
+                    // 
+                    // pictureBox4
+                    // 
+                    this.pictureBox4.BackgroundImage = global::_2.Dobbelsteen.Properties.Resources.d4;
+                    this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+                    this.pictureBox4.ErrorImage = global::_2.Dobbelsteen.Properties.Resources.d4;
+                    this.pictureBox4.Location = new System.Drawing.Point(60, 234);
+                    this.pictureBox4.Name = "pictureBox4";
+                    this.pictureBox4.Size = new System.Drawing.Size(160, 160);
+                    this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+                    this.pictureBox4.TabIndex = 1;
+                    this.pictureBox4.TabStop = false;
+                    // 
+                    // pictureBox3
+                    // 
+                    this.pictureBox3.BackgroundImage = global::_2.Dobbelsteen.Properties.Resources.d3;
+                    this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+                    this.pictureBox3.ErrorImage = global::_2.Dobbelsteen.Properties.Resources.d3;
+                    this.pictureBox3.Location = new System.Drawing.Point(567, 38);
+                    this.pictureBox3.MaximumSize = new System.Drawing.Size(160, 160);
+                    this.pictureBox3.MinimumSize = new System.Drawing.Size(160, 160);
+                    this.pictureBox3.Name = "pictureBox3";
+                    this.pictureBox3.Size = new System.Drawing.Size(160, 160);
+                    this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+                    this.pictureBox3.TabIndex = 2;
+                    this.pictureBox3.TabStop = false;
+                    // 
+                    // pictureBox2
+                    // 
+                    this.pictureBox2.BackgroundImage = global::_2.Dobbelsteen.Properties.Resources.d2;
+                    this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+                    this.pictureBox2.ErrorImage = global::_2.Dobbelsteen.Properties.Resources.d2;
+                    this.pictureBox2.Location = new System.Drawing.Point(316, 38);
+                    this.pictureBox2.Name = "pictureBox2";
+                    this.pictureBox2.Size = new System.Drawing.Size(160, 160);
+                    this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+                    this.pictureBox2.TabIndex = 3;
+                    this.pictureBox2.TabStop = false;
+                    // 
+                    // pictureBox5
+                    // 
+                    this.pictureBox5.BackgroundImage = global::_2.Dobbelsteen.Properties.Resources.d5;
+                    this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+                    this.pictureBox5.ErrorImage = global::_2.Dobbelsteen.Properties.Resources.d5;
+                    this.pictureBox5.Location = new System.Drawing.Point(316, 234);
+                    this.pictureBox5.Name = "pictureBox5";
+                    this.pictureBox5.Size = new System.Drawing.Size(160, 160);
+                    this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+                    this.pictureBox5.TabIndex = 4;
+                    this.pictureBox5.TabStop = false;
+                    // 
+                    // pictureBox6
+                    // 
+                    this.pictureBox6.BackgroundImage = global::_2.Dobbelsteen.Properties.Resources.d6;
+                    this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+                    this.pictureBox6.ErrorImage = global::_2.Dobbelsteen.Properties.Resources.d6;
+                    this.pictureBox6.Location = new System.Drawing.Point(567, 234);
+                    this.pictureBox6.Name = "pictureBox6";
+                    this.pictureBox6.Size = new System.Drawing.Size(160, 160);
+                    this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+                    this.pictureBox6.TabIndex = 5;
+                    this.pictureBox6.TabStop = false;
+                    // 
+                    // button1
+                    // 
+                    this.button1.Location = new System.Drawing.Point(302, 465);
+                    this.button1.Name = "button1";
+                    this.button1.Size = new System.Drawing.Size(183, 45);
+                    this.button1.TabIndex = 6;
+                    this.button1.Text = "Werp dobbelsteen!";
+                    this.button1.UseVisualStyleBackColor = true;
+                    this.button1.Click += new System.EventHandler(this.button1_Click);
+                    // 
+                    // Form1
+                    // 
+                    this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+                    this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+                    this.ClientSize = new System.Drawing.Size(782, 553);
+                    this.Controls.Add(this.button1);
+                    this.Controls.Add(this.pictureBox6);
+                    this.Controls.Add(this.pictureBox5);
+                    this.Controls.Add(this.pictureBox2);
+                    this.Controls.Add(this.pictureBox3);
+                    this.Controls.Add(this.pictureBox4);
+                    this.Controls.Add(this.pictureBox1);
+                    this.MaximumSize = new System.Drawing.Size(800, 600);
+                    this.MinimumSize = new System.Drawing.Size(800, 600);
+                    this.Name = "Form1";
+                    this.Text = "Dobbelsteen";
+                    this.Load += new System.EventHandler(this.Form1_Load);
+                    ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+                    ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+                    ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+                    ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+                    ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+                    ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+                    this.ResumeLayout(false);
+        
+                }
+        
+                #endregion
+        
+                private System.Windows.Forms.PictureBox pictureBox1;
+                private System.Windows.Forms.PictureBox pictureBox4;
+                private System.Windows.Forms.PictureBox pictureBox3;
+                private System.Windows.Forms.PictureBox pictureBox2;
+                private System.Windows.Forms.PictureBox pictureBox5;
+                private System.Windows.Forms.PictureBox pictureBox6;
+                private System.Windows.Forms.Button button1;
+            }
+        }
+        
+        
+
+      </th>
+  
+    </tr>
+    </table>
+
+    <br><br>
+<br><h2>2. Shop </h2>
+<br><br>
+<img src="afbeeldingen1/webshop.PNG" width="800" class="center">
+<br><br>
+<h3>CODE:</h3>
+  <table>
+    <colgroup>
+      <col span="4" style="background-color: #f2f2f2">
+    </colgroup>
+    <tr>
+      <th><Keypad.h>
+
+        using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Online_Shop
+{
+    class casa
+    {
+    }
+}
+
+
+      </th>
+  
+    </tr>
+    </table>
+<br><br>
+    <table>
+      <colgroup>
+        <col span="4" style="background-color: #f2f2f2">
+      </colgroup>
+      <tr>
+        <th><Keypad.h>
+  
+          using System;
+          using System.Collections.Generic;
+          using System.Linq;
+          using System.Text;
+          using System.Threading.Tasks;
+          
+          namespace Online_Shop
+          {
+              class Class1
+              {
+          
+                  public int DoAnotherCalculation(int incomingInt)
+                  {
+                      incomingInt = incomingInt * 3;
+                      return incomingInt;
+                  }
+              }
+          }
+          
+  
+  
+        </th>
+    
+      </tr>
+      </table>
+  
+  
+      <br><br>
+
+      <table>
+        <colgroup>
+          <col span="4" style="background-color: #f2f2f2">
+        </colgroup>
+        <tr>
+          <th><Keypad.h>
+    
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+            using System.Text;
+            using System.Threading.Tasks;
+            
+            namespace Online_Shop
+            {
+                class Items
+                {
+                    public double PrijsRondeSpiegel = 80;
+                    public double PrijsBijzettafel = 350.9;
+            
+                }
+            }
+            
+    
+    
+          </th>
+      
+        </tr>
+        </table>
+    
+        <br><br>
+
+        <table>
+          <colgroup>
+            <col span="4" style="background-color: #f2f2f2">
+          </colgroup>
+          <tr>
+            <th><Keypad.h>
+      
+vusing System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Online_Shop
+{
+    class Product
+    {
+
+        public string product { get; set; }
+        public int aantal { get; set; }
+        public double bedrag { get; set; }
+
+        public Product()
+        {
+            product = "";
+            aantal = 0;
+            bedrag = 0;
+        }
+
+        public override string ToString() {
+            return product;
+        }
+    }
+}
+
+              
+      
+      
+            </th>
+        
+          </tr>
+          </table>
+          <br><br>
+
+          <table>
+            <colgroup>
+              <col span="4" style="background-color: #f2f2f2">
+            </colgroup>
+            <tr>
+              <th><Keypad.h>
+        
+                using System;
+                using System.Collections.Generic;
+                using System.Linq;
+                using System.Threading.Tasks;
+                using System.Windows.Forms;
+                
+                namespace Online_Shop
+                {
+                    static class Program
+                    {
+                        /// <summary>
+                        /// The main entry point for the application.
+                        /// </summary>
+                        [STAThread]
+                        static void Main()
+                        {
+                            Application.EnableVisualStyles();
+                            Application.SetCompatibleTextRenderingDefault(false);
+                            Application.Run(new Form1());
+                        }
+                    }
+                }
+                
+              </th>
+          
+            </tr>
+            </table>
+        <br><br>
+
+    <br><br>
+    <br><h2>3. Rekenmachine 2.0 </h2>
+    <br><br>
+    <img src="afbeeldingen1/rekenmachine.PNG" width="500" class="center">
+    <br><br>
+    <h3>CODE:</h3>
+      <table>
+        <colgroup>
+          <col span="4" style="background-color: #f2f2f2">
+        </colgroup>
+        <tr>
+          <th><Keypad.h>
+    
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+            using System.Threading.Tasks;
+            using System.Windows.Forms;
+            
+            namespace Rekenmachine_2._0
+            {
+                static class Program
+                {
+                    /// <summary>
+                    /// The main entry point for the application.
+                    /// </summary>
+                    [STAThread]
+                    static void Main()
+                    {
+                        Application.EnableVisualStyles();
+                        Application.SetCompatibleTextRenderingDefault(false);
+                        Application.Run(new Form1());
+                    }
+                }
+            }
+            
+
+          </th>
+      
+        </tr>
+        </table>
+
+        <br><br>
+        <br><h2>4. Videoplayer </h2>
+        <br><br>
+        <h3>CODE:</h3>
+          <table>
+            <colgroup>
+              <col span="4" style="background-color: #f2f2f2">
+            </colgroup>
+            <tr>
+              <th><Keypad.h>
+        
+                using System;
+                using System.Collections.Generic;
+                using System.ComponentModel;
+                using System.Data;
+                using System.Drawing;
+                using System.Linq;
+                using System.Text;
+                using System.Threading.Tasks;
+                using System.Windows.Forms;
+                using Microsoft.DirectX.AudioVideoPlayback;
+                using System.IO;
+                
+                namespace Video_Player
+                {
+                    public partial class Form1 : Form
+                    {
+                
+                        private Video video;
+                        private string[] videoPaths;
+                        private string folderPath = @"C:\Users\jenny\Desktop\Films\";
+                        private int selectedIndex = 0;
+                        private Size formSize;
+                        private Size pnlSize;
+                
+                        public Form1()
+                        {
+                            InitializeComponent();
+                        }
+                
+                        private void Form1_Load (object sender, EventArgs e)
+                        {
+                
+                            formSize = new Size(this.Width, this.Height);
+                            pnlSize = new Size(axWindowsMediaPlayer1.Width, axWindowsMediaPlayer1.Height);
+                
+                            videoPaths = Directory.GetFiles(folderPath, "*.wmv");
+                
+                            if (videoPaths != null)
+                            {
+                                foreach (string path in videoPaths)
+                                {
+                                    string vid = path.Replace(folderPath, string.Empty);
+                                    vid = vid.Replace(".wmv", string.Empty);
+                                    listBox1.Items.Add(vid);
+                                }
+                            }
+                            listBox1.SelectedIndex = selectedIndex;
+                
+                        }
+                
+                        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+                        {
+                            try
+                            {
+                                video.Stop();
+                                video.Dispose();
+                            }
+                            catch { }
+                
+                            int index = listBox1.SelectedIndex;
+                            selectedIndex = index;
+                            video = new Video(videoPaths[index], false);
+                            video.Owner = axWindowsMediaPlayer1;
+                            axWindowsMediaPlayer1.Size = pnlSize;
+                            video.Play();
+                            tmrVideo.Enabled = true;
+                            btnPause.Text = "Pause";
+                            video.Ending += Video_Ending;
+                            lblVideo.Text = listBox1.Text;
+                        }
+                
+                        private void Video_Ending(object sender, EventArgs e)
+                        {
+                            Task.Factory.StartNew(() =>
+                            {
+                                System.Threading.Thread.Sleep(2000);
+                
+                                if (InvokeRequired)
+                                {
+                                    this.Invoke(new Action(() =>
+                                    {
+                                        NextVideo();
+                                    }));
+                                }
+                            });
+                        }
+                
+                        private void NextVideo()
+                        {
+                            int index = listBox1.SelectedIndex;
+                            index++;
+                            if (index > videoPaths.Length - 1)
+                                index = 0;
+                            selectedIndex = index;
+                            listBox1.SelectedIndex = index;
+                        }
+                
+                        private void btnNext_Click(object sender, EventArgs e)
+                        {
+                            NextVideo();
+                        }
+                
+                        private void btnPrevious_Click(object sender, EventArgs e)
+                        {
+                            PreviousVideo();
+                        }
+                
+                        private void PreviousVideo()
+                        {
+                            int index = listBox1.SelectedIndex;
+                            index--;
+                            if (index == -1)
+                                index = videoPaths.Length - 1;
+                            selectedIndex = index;
+                            listBox1.SelectedIndex = index;
+                        }
+                
+                
+                        private void btnPause_Click(object sender, EventArgs e)
+                        {
+                            if (!video.Playing)
+                            {
+                                video.Play();
+                                tmrVideo.Enabled = true;
+                                btnPause.Text = "Pause";
+                            }
+                            else if (video.Playing)
+                            {
+                                video.Pause();
+                                tmrVideo.Enabled = false;
+                                btnPause.Text = "Play";
+                            }
+                        }
+                
+                        private void btnFullscreen_Click(object sender, EventArgs e)
+                        {
+                            FormBorderStyle = FormBorderStyle.None;
+                            WindowState = FormWindowState.Maximized;
+                            video.Owner = this;
+                        }
+                
+                        private void Form1_KeyDown(object sender, KeyEventArgs e)
+                        {
+                            if (e.KeyCode == Keys.Escape)
+                            {
+                                //exit full screen when escape is pressed
+                                FormBorderStyle = FormBorderStyle.Sizable;
+                                WindowState = FormWindowState.Normal;
+                                this.Size = formSize;
+                                video.Owner = axWindowsMediaPlayer1;
+                                axWindowsMediaPlayer1.Size = pnlSize;
+                            }
+                        }
+                
+                        private void tmrVideo_Tick(object sender, EventArgs e)
+                        {
+                            int currentTime = Convert.ToInt32(video.CurrentPosition);
+                            int maxTime = Convert.ToInt32(video.Duration);
+                
+                            lblVideo.Text = string.Format("{0:00}:{1:00}:{2:00}", currentTime / 3600, (currentTime / 60) % 60, currentTime % 60)
+                                                    + " / " +
+                                                    string.Format("{0:00}:{1:00}:{2:00}", maxTime / 3600, (maxTime / 60) % 60, maxTime % 60);
+                        }
+                
+                    }
+                } 
+                
+              </th>
+          
+            </tr>
+            </table>
+</div>
+
+  <section></section>
+  <button id="topBtn"><i class="fas fa-arrow-up"></i></button>
+
+  <script type="text/javascript" src="index.js"></script>
+    </body>
+
+</html>
+

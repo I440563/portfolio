@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://kit.fontawesome.com/fb6a8bb9cd.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arduino Projecten</title>
+    <link rel="icon" 
+    type="image/ico" 
+    href="afbeeldingen/favicon.ico">
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">
+        <ul class="logo_links">
+          <li><a href="index.html">Jenny Tran</a></li>
+      </ul>
+      </div>
+        <nav>
+        <ul class="nav_links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="work.html">Work</a></li>
+        </ul>
+      </nav>
+      </header>
+
+  <div class="container">
+    <a href="0-development.html" class="previous"> <div class="d"><b>&laquo; terug</b></div></a><br><br>
+  <div class="c">Arduino Projecten</div>
+
+
+<br><br>
+  <br><h2>1. De Barcodescanner</h2>
+  <td><a href="https://www.tinkercad.com/embed/5ixK3wTm0Rp?editbtn=1" target="_blank"><b>Bekijk op Tinkercad</b> <img src="afbeeldingen/development/Tinkercad.png" alt="Github Logo" style="height:14px;"></a></td>
+
+  <br><br><h3>Inleiding:</h3>
+  Met arduino heb ik een barcode scanner gemaakt. Dit is bedoeld voor het project "slimme brievenbus" van de opdrachtgever Glamorous Goat.
+  De Barcodescanner is een klein onderdeel van de tech van de brievenbus. Dit moet het gedeelte voorstellen dat de postbode gebruikt: door de barcode van het pakketje te scannen, gaat de slimme brievenbus open.
+  Hierdoor heeft de postcode geen aparte sleutel nodig.
+  
+  <br>
+    <br><h3>Proof Of Concept:</h3>
+    <b>Situatieschets:</b>
+    <br>De postbode komt een pakket afleveren. Om de brievenbus te openen, moet de barcode op het pakketje worden gescand met de barcodescanner. Wanneer de barcode in het systeem van “te ontvangen pakketjes” staat, wordt dit pakketje geaccepteerd en zal de brievenbus openen. De tekst “De barcode is herkend, u heeft nu toegang” verschijnt ter bevestiging, een LED lamp gaat branden en een accepterend deuntje uit de buzzer wordt afgespeeld. 
+    
+    <br><br>Wanneer er een barcode wordt gescand dat niet in het systeem staat, zal de LED niet branden en wordt er een “afkeurend” deuntje afgespeeld. Dit deuntje is een paar tonen lager dan het “accepterende” deuntje. Ook zal de volgende tekst verschijnen: de barcode wordt niet herkend, probeer het nog eens. 
+    
+    <br><br>Omdat er geen barcode scanner beschikbaar was, is hier in het voorbeeld ter vervanging een keypad module gebruikt. Deze keypad werkt op dezelfde manier als de scanner, alleen wordt de barcode dan handmatig ingevoerd. Deze widget/iframe heb ik niet zelf gemaakt!
+  <br><br>
+  <div class="center">
+    <iframe width="725" height="453" src="https://www.tinkercad.com/embed/5ixK3wTm0Rp?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+  </div>
+  <br><br>
+  <img src="afbeeldingen/development/1.PNG" width="400" class="center">
+  <br><br>
+  
+  <br><h3>CODE:</h3>
+  <table>
+    <colgroup>
+      <col span="4" style="background-color: #f2f2f2">
+    </colgroup>
+    <tr>
+      <th>#include <Keypad.h>
+  
+        const int ROW_NUM = 4;
+        const int COLUMN_NUM = 4;
+        const int buzzer = 12;
+        
+        char keys[ROW_NUM][COLUMN_NUM] = {
+          {'1','2','3', 'A'},
+          {'4','5','6', 'B'},
+          {'7','8','9', 'C'},
+          {'*','0','#', 'D'}
+        };
+        
+        byte pin_rows[ROW_NUM] = {9, 8, 7, 6};
+        byte pin_column[COLUMN_NUM] = {5, 4, 3, 2};
+        
+        Keypad keypad = Keypad( makeKeymap(keys), pin_rows, pin_column, ROW_NUM, COLUMN_NUM );
+        
+        const String password = "1A";
+        String input_password;
+        
+        void setup(){
+          Serial.begin(9600);
+          input_password.reserve(32);
+          pinMode (13, OUTPUT);
+          pinMode(buzzer, OUTPUT);
+        }
+        
+        void loop(){
+          char key = keypad.getKey();
+        
+          if (key){
+            Serial.println(key);
+        
+            if(key == '*') {
+              input_password = "";
+            } else if(key == '#') {
+              if(password == input_password) {
+                Serial.println("De barcode is herkend, u heeft nu toegang.");
+                
+                digitalWrite(13,HIGH);
+                
+                int i = 0;
+                do{ 
+                  i++;
+                 tone(buzzer, 2000); 
+          delay(200);   
+          noTone(buzzer); 
+          delay(200);  
+                } while(i<2);
+                delay(5000);
+                
+              } else {
+                Serial.println("De barcode wordt niet herkend, probeer het nog eens.");
+                
+                int i = 0;
+                do{ 
+                  i++;
+                 tone(buzzer, 900); 
+          delay(500);   
+          noTone(buzzer); 
+          delay(500);  
+                } while(i<2);
+                delay(5000);
+              }
+        
+              input_password = "";
+            } else {
+              input_password += key;
+            }
+          }
+        }</th>
+  
+    </tr>
+    </table>
+  <br><br>
+
+  <br><h2>2. Deur ontgrendel / grendel systeem </h2>
+<br><br>
+<h3>CODE:</h3>
+  <table>
+    <colgroup>
+      <col span="4" style="background-color: #f2f2f2">
+    </colgroup>
+    <tr>
+      <th><Keypad.h>
+  
+
+
+
+        #include <LiquidCrystal.h>
+          #include <Servo.h>
+          LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+          Servo myservo;
+          
+          const int outpin = 9;
+          int button1=0;
+          
+          int pos=45;
+          int pos1=90;
+          
+          
+          void setup() {
+          
+            myservo.attach(outpin);
+            myservo.write(0);
+           
+            pinMode(10,INPUT);
+            pinMode(13,OUTPUT);
+            lcd.begin(16, 2);
+            
+          
+          }
+          
+          void loop() {
+            button1=digitalRead(10);//
+           
+            if(button1==LOW)
+            {
+            
+               myservo.write(pos);
+                delay(2000);
+               lcd.print("locked\n");
+           
+              digitalWrite(13,HIGH);
+            }
+            if(button1==HIGH )
+            {
+            
+            myservo.write(-pos);
+            delay(2000);
+                lcd.print("Unlocked\n");
+           digitalWrite(13,LOW);
+            }
+           
+            
+             
+          }
+          
+
+      </th>
+  
+    </tr>
+    </table>
+
+    <br><br>
+
+  <br><h2>3. LED lampjes </h2>
+<br><br>
+Een led knippert ½ seconde aan en ½ seconde uit.
+<br>
+<h3>CODE:</h3>
+  <table>
+    <colgroup>
+      <col span="4" style="background-color: #f2f2f2">
+    </colgroup>
+    <tr>
+      <th><Keypad.h>
+
+        int LedPin=13;
+void setup() {
+ pinMode(LedPin, OUTPUT);
+}
+void loop() {
+ digitalWrite(LedPin, HIGH);
+ delay(50);
+ digitalWrite(LedPin, LOW);
+ delay(500);
+}
+
+  
+      </th>
+  
+    </tr>
+    </table>
+
+    <br><br>
+Twee LEDS knipperen om en om
+<br>
+<h3>CODE:</h3>
+  <table>
+    <colgroup>
+      <col span="4" style="background-color: #f2f2f2">
+    </colgroup>
+    <tr>
+      <th><Keypad.h>
+
+        int Led1=13;
+int Led2=12;
+
+void setup() {
+ pinMode(Led1, OUTPUT);
+ pinMode(Led2, OUTPUT);
+}
+
+void loop() {
+ digitalWrite(Led1, HIGH);
+ delay(500);
+ digitalWrite(Led1, LOW);
+ delay(1000);
+
+ digitalWrite(Led2, HIGH);
+ delay(500);
+ digitalWrite(Led2, LOW);
+ delay(1000);
+}
+  
+      </th>
+  
+    </tr>
+    </table>
+
+    <br><br>
+    <br><h2>4. Buttons en keuzestructuren </h2>
+    <br><br>
+    <img src="arduino-projecten/Afbeelding1.png" width="500" class="center">
+    <img src="arduino-projecten/Afbeelding2.png" width="500" class="center">
+    <br><br>
+    <h3>CODE:</h3>
+      <table>
+        <colgroup>
+          <col span="4" style="background-color: #f2f2f2">
+        </colgroup>
+        <tr>
+          <th><Keypad.h>
+            const int buttonPin = 2;     
+            const int ledPin =  13;      
+             
+            int buttonState = 0;         
+             
+            void setup() {   
+              pinMode(ledPin, OUTPUT);   
+              pinMode(buttonPin, INPUT); 
+            } 
+             
+            void loop() {
+              buttonState = digitalRead(buttonPin); 
+             
+             if (buttonState == HIGH) {
+              digitalWrite(ledPin, HIGH);    
+              }
+              else {
+                digitalWrite(ledPin, LOW);    
+                } 
+             }
+            
+      
+          </th>
+      
+        </tr>
+        </table>
+
+        <br><br>
+        <br><h2>5. Variabelen en printen van variabelen </h2>
+        <br><br>
+        Een programma dat een variabele ‘count’ maakt en deze elke seconde met één ophoogt en vervolgens print naar de Serial Monitor.
+        <h3>CODE:</h3>
+ 
+          <table>
+            <colgroup>
+              <col span="4" style="background-color: #f2f2f2">
+            </colgroup>
+            <tr>
+              <th><Keypad.h>
+        
+                void setup(){
+                  pinMode(ledpin, OUTPUT); pinMode(buttonpin, INPUT_PULLUP); Serial.begin(9600) ;
+                  }
+                  
+                  boolean debounce(int pin)
+                   { boolean state; 
+                  boolean previousState; 
+                  previousState = digitalRead(pin); 
+                  for (int counter = 0; counter < 10; counter++)
+                  { delay(1);  
+                  state = digitalRead(pin); 
+                  if (state != previousState)
+                  { 
+                  counter = 0; 
+                  previousState = state; 
+                  } } return state;
+                  
+          
+              </th>
+          
+            </tr>
+            </table>
+
+            <br><br>
+            Een programma met drie LEDs waarbij de LEDs één voor één oplichten. Na LED nummer drie licht LED nummer één weer op enz.
+            <h3>CODE:</h3>
+ 
+              <table>
+                <colgroup>
+                  <col span="4" style="background-color: #f2f2f2">
+                </colgroup>
+                <tr>
+                  <th><Keypad.h>
+            
+                    int LED1 = 13;
+                    int LED2 = 12;
+                    int LED3 = 11;
+                    
+                    void setup() {
+                       pinMode(LED1, OUTPUT);
+                       pinMode(LED2, OUTPUT);
+                       pinMode(LED3, OUTPUT);
+                    }
+                    
+                    void loop() {
+                      digitalWrite(LED1, HIGH);  
+                      delay(200);               
+                      digitalWrite(LED2, HIGH);    
+                      delay(200);         
+                      digitalWrite(LED3, HIGH);   
+                      delay(200);   
+                      digitalWrite(LED1, LOW);  
+                      delay(300);                 
+                      digitalWrite(LED2, LOW);     
+                      delay(300);                  
+                      digitalWrite(LED3, LOW);     
+                      delay(300);                  
+                    }
+                    
+                  </th>
+              
+                </tr>
+                </table>
+            
+                <br><br>
+               Met elke druk op de button gaat de volgende LED of kleur gaat branden (dus niet meer automatisch). 
+            <h3>CODE:</h3>
+ 
+              <table>
+                <colgroup>
+                  <col span="4" style="background-color: #f2f2f2">
+                </colgroup>
+                <tr>
+                  <th><Keypad.h>
+            
+                    int LED1 = 13;
+int LED2 = 12;
+int LED3 = 11;
+int buttonPin = 4;
+
+void setup() {
+   pinMode(LED1, OUTPUT);
+   pinMode(LED2, OUTPUT);
+   pinMode(LED3, OUTPUT);
+   pinMode(buttonPin, INPUT);
+}
+
+void loop() {
+buttonState = digitalRead(buttonPin);
+if (buttonState == HIGH)
+
+   (
+      P++;
+      Delay(2000);
+    )
+
+  digitalWrite(LED1, 1);  
+  digitalWrite(LED2, 0);    
+  digitalWrite(LED3, 0);   
+  delay(de);   
+
+  digitalWrite(LED1, 0);  
+  digitalWrite(LED2, 1);    
+  digitalWrite(LED3, 0);   
+  delay(de);   
+
+  digitalWrite(LED1, 0);  
+  digitalWrite(LED2, 0);    
+  digitalWrite(LED3, 1);   
+  delay(de);   
+
+}                    
+                  </th>
+              
+                </tr>
+                </table>
+
+                <br><br>
+                Nog een button toegevoegd: bij druk op deze button keert de richting van het oplichten van de LEDs telkens om. 
+             <h3>CODE:</h3>
+  
+               <table>
+                 <colgroup>
+                   <col span="4" style="background-color: #f2f2f2">
+                 </colgroup>
+                 <tr>
+                   <th><Keypad.h>
+             
+                    int LED1 = 13;
+int LED2 = 12;
+int LED3 = 11;
+int buttonPin = 4;
+
+void setup() {
+   pinMode(LED1, OUTPUT);
+   pinMode(LED2, OUTPUT);
+   pinMode(LED3, OUTPUT);
+   pinMode(buttonPin, INPUT);
+}
+
+void loop() {
+buttonState = digitalRead(buttonPin);
+if (buttonState == HIGH)
+
+   (
+      P++;
+      Delay(2000);
+    )
+
+  digitalWrite(LED1, 0);  
+  digitalWrite(LED2, 0);    
+  digitalWrite(LED3, 1);   
+  delay(de);   
+
+  digitalWrite(LED1, 0);  
+  digitalWrite(LED2, 1);    
+  digitalWrite(LED3, 0);   
+  delay(de);   
+
+  digitalWrite(LED1, 1);  
+  digitalWrite(LED2, 0);    
+  digitalWrite(LED3, 0);   
+  delay(de);   
+
+}                    
+                   </th>
+               
+                 </tr>
+                 </table>
+
+            <br><br>
+            <br><h2>6. Herhalingsstructuren </h2>
+            <br><br>
+            LED knippert bij druk op de button 3x met een for loop. 
+
+            <h3>CODE:</h3>
+              <table>
+                <colgroup>
+                  <col span="4" style="background-color: #f2f2f2">
+                </colgroup>
+                <tr>
+                  <th><Keypad.h>
+            
+                    int ledPin = 13;
+                    int buttonPin = 2;
+                    int buttonState = 0;
+                    
+                    void setup() {
+                    Serial.begin(9600);
+                    
+                      pinMode(ledPin, OUTPUT);
+                      pinMode(buttonPin, INPUT);
+                    }
+                    
+                    void loop() {
+                      buttonState = digitalRead(buttonPin);
+                      if (buttonState == HIGH) {
+                    
+                        Serial.println("ingedrukt");
+                    
+                        delay(200);
+                        for (int i = 0; i < 3; i++) {
+                          digitalWrite(ledPin, HIGH);
+                          delay(500);
+                          digitalWrite(ledPin, LOW);
+                          delay(500);
+                        }
+                    
+                      }
+                    }
+                    
+
+                  </th>
+              
+                </tr>
+                </table>
+
+                <br><br>
+                LED knippert bij druk op de button 3x met een while Loop.
+                <h3>CODE:</h3>
+                  <table>
+                    <colgroup>
+                      <col span="4" style="background-color: #f2f2f2">
+                    </colgroup>
+                    <tr>
+                      <th><Keypad.h>
+                
+                        buttonState = digitalRead(buttonPin);
+
+void loop(buttonState == HIGH)
+{
+  buttonState = digitalRead(buttonPin);
+  while (buttonState == HIGH) {
+
+    Serial.println("ingedrukt");
+
+    delay(200);
+    for (int i = 0; i < 3; i++) {
+      digitalWrite(ledPin, HIGH);
+      delay(500);
+      digitalWrite(ledPin, LOW);
+      delay(500);
+}
+
+                  
+                      </th>
+                  
+                    </tr>
+                    </table>
+
+                    <br><br>
+                    Een programma waarbij de LED aangaat nadat er 3x op de button is gedrukt. Na nog een keer 3x drukken gaat de LED weer uit. 
+                    <h3>CODE:</h3>
+                      <table>
+                        <colgroup>
+                          <col span="4" style="background-color: #f2f2f2">
+                        </colgroup>
+                        <tr>
+                          <th><Keypad.h>
+                    
+                            int ledPin = 9;  
+int switchPin = 5;
+int switchValue;  
+int counter = 0;
+//int counterValue;
+    
+void setup()   
+{   
+      pinMode(ledPin, OUTPUT);   
+      pinMode(switchPin, INPUT);   
+      digitalWrite(switchPin, HIGH);   
+}   
+     
+void loop()   
+{   
+   
+    switchValue = digitalRead(switchPin);   
+      if ((switchValue == LOW) && (counter <= 3)) {   
+          digitalWrite(ledPin, HIGH);   
+          delay(200);              
+          digitalWrite(ledPin, LOW);   
+          delay(200);              
+          counter++; 
+      }
+      if (switchValue == HIGH)
+      {
+           counter = 0;
+      }
+
+}
+
+                      
+                          </th>
+                      
+                        </tr>
+                        </table>
+
+                        <br><br>
+                        LED gaat langzaam van uit naar vol / vol naar uit met een fade effect.
+                        <h3>CODE:</h3>
+                          <table>
+                            <colgroup>
+                              <col span="4" style="background-color: #f2f2f2">
+                            </colgroup>
+                            <tr>
+                              <th><Keypad.h>
+                        
+                                const int buttonPin = 2;     // the number of the pushbutton pin
+                                const int ledPin = 9;        // the number of the LED pin
+                                const int fadingDelay = 50;  // the speed of LED fading (higher value = slower)
+                                int buttonState = 0;
+                                boolean fadingState = false; 
+                                
+                                void setup() {
+                                  pinMode(ledPin, OUTPUT);
+                                  pinMode(buttonPin, INPUT);
+                                }
+                                
+                                void loop() {
+                                  buttonState = digitalRead(buttonPin);
+                                
+                                  if (buttonState == HIGH) {
+                                    if (fadingState == false) {
+                                      for (int i = 0; i <= 255; i += 5) {
+                                        analogWrite(ledPin, i);
+                                        delay(fadingDelay);
+                                      }
+                                    } else {
+                                      for (int i = 255; i >= 0; i -= 5) {
+                                        analogWrite(ledPin, i);
+                                        delay(fadingDelay);
+                                      }      
+                                    }
+                                    fadingState = !fadingState; 
+                                  }
+                                }
+                                
+
+                              </th>
+                          
+                            </tr>
+                            </table>
+
+                <br><br>
+                <br><h2>7.  Een ledknipper functie LED knippert 3x als een button wordt ingedrukt.  </h2>
+                <br><br>
+                <h3>CODE:</h3>
+                  <table>
+                    <colgroup>
+                      <col span="4" style="background-color: #f2f2f2">
+                    </colgroup>
+                    <tr>
+                      <th><Keypad.h>
+                
+                        const byte ledPin = 13;
+const byte buttonPin1 = A1;
+const byte buttonPin2 = A2;
+boolean ledIsOn = false;
+byte previousButtonState1 = HIGH;
+byte currentButtonState1 = HIGH;
+byte previousButtonState2 = HIGH;
+byte currentButtonState2 = HIGH;
+byte buttonCount = 0;
+
+
+void setup()
+{
+  Serial.begin(115200);
+  pinMode(ledPin, OUTPUT);
+  pinMode(buttonPin1, INPUT_PULLUP);
+  pinMode(buttonPin2, INPUT_PULLUP);
+  digitalWrite(ledPin, HIGH);
+}
+
+void loop()
+{
+  if (!ledIsOn) 
+  {
+    currentButtonState1 = digitalRead(buttonPin1);
+    if (currentButtonState1 != previousButtonState1 && currentButtonState1 == LOW) 
+    {
+       digitalWrite(ledPin, LOW);   
+        delay(200);              
+        digitalWrite(ledPin, HIGH);   
+        delay(200);              
+        counter++;
+    }
+
+      if (switchValue == HIGH)
+      {
+           counter = 0;
+      }
+    previousButtonState1 = currentButtonState1;
+  }
+  else        
+  {
+    currentButtonState2 = digitalRead(buttonPin2);
+    if (currentButtonState2 != previousButtonState2 && currentButtonState2 == LOW) 
+    {
+      buttonCount++;
+      Serial.println(buttonCount); 
+    }
+    if (buttonCount == 4) 
+    {
+      digitalWrite(ledPin, HIGH);
+      buttonCount = 0;
+      ledIsOn = false;
+    }
+    previousButtonState2 = currentButtonState2;
+  }
+}
+
+                  
+                      </th>
+                  
+                    </tr>
+                    </table>
+
+                    <br><br>
+
+                    <br><h2>8. Potentiometer RGB Led Control </h2>
+                    <br>
+                    Door aan de potentiometer te draaien, verandert de RGB Led geleidelijk van kleur. 
+                    De kleuren zijn onder andere: primaire kleuren en secundaire kleuren.
+                  <br><br>
+
+                  <img src="arduino-projecten/Potentiometer1.png" width="500" class="center">
+                  <img src="arduino-projecten/Potentiometer2.png" width="500" class="center">
+                  <img src="arduino-projecten/Potentiometer3.png" width="500" class="center">
+                  <img src="arduino-projecten/Potentiometer4.png" width="500" class="center">
+                  <img src="arduino-projecten/Potentiometer5.png" width="500" class="center">
+                  <img src="arduino-projecten/Potentiometer6.png" width="500" class="center">
+                  <img src="arduino-projecten/Potentiometer7.png" width="500" class="center">
+                  <img src="arduino-projecten/Potentiometer8.png" width="500" class="center">
+<br><br>
+                  <h3>CODE:</h3>
+                    <table>
+                      <colgroup>
+                        <col span="4" style="background-color: #f2f2f2">
+                      </colgroup>
+                      <tr>
+                        <th><Keypad.h>
+                    
+                          int redPin = 9 ;
+                          int greenPin = 10 ;
+                          int bluePin = 11 ;
+                          int potmeter = A0;
+                          
+                          void setup()
+                          {
+                            pinMode( redPin, OUTPUT ) ;
+                            pinMode( greenPin, OUTPUT ) ;
+                            pinMode( bluePin, OUTPUT ) ;
+                            Serial.begin(9600) ;
+                          }
+                           
+                          void loop(){
+                            int sensorValue = analogRead(potmeter);
+                          
+                            int outputRed;
+                            if (sensorValue <= 680) {
+                              outputRed = map(sensorValue, 0, 340, 255, 0);
+                            } else {
+                              outputRed = map(sensorValue, 680, 1023, 0, 255);
+                            }
+                            outputRed = constrain(outputRed, 0, 255);
+                          
+                            int outputGreen;
+                            if (sensorValue <= 340) {
+                              outputGreen = map(sensorValue, 0, 340, 0, 255);
+                            } else {
+                              outputGreen = map(sensorValue, 340, 680, 255, 0);
+                            }
+                            outputGreen = constrain(outputGreen, 0, 255);
+                          
+                            int outputBlue;
+                            if (sensorValue <= 680) {
+                              outputBlue = map(sensorValue, 340, 680, 0, 255);
+                            } else {
+                              outputBlue = map(sensorValue, 680, 1023, 255, 0);
+                            }
+                            outputBlue = constrain(outputBlue, 0, 255);
+                          
+                            analogWrite(redPin, outputRed);
+                            analogWrite(greenPin, outputGreen);
+                            analogWrite(bluePin, outputBlue);
+                          
+                              Serial.println(sensorValue);
+                          }
+                          
+
+                        </th>
+                    
+                      </tr>
+                      </table>
+
+</div>
+
+  <section></section>
+  <button id="topBtn"><i class="fas fa-arrow-up"></i></button>
+
+  <script type="text/javascript" src="index.js"></script>
+    </body>
+
+</html>
+

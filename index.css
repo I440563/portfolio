@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Muli:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Vidaloka&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Tera&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: #ffebeb;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+.container {
+  max-width: 1100px; /* breedte tekstvak */
+  margin: 110px auto; /* hoe ver de tekst beneden staat */ 
+  padding: 0 0.75rem;
+  font-family: 'Muli', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+header{
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  justify-content: space between;
+  align-items: center;
+  padding: 30px 0.75rem; /*naar boven of beneden?*/
+}
+
+/* Navigatie systeem*/
+.nav {
+  overflow: hidden;
+  background-color: #ffebeb;
+  position: fixed;
+  max-width: 100%;
+  height: 70px;
+  float: right;
+}
+
+.nav_links {
+  font-family: 'Bungee Shade', cursive;
+  word-spacing: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  list-style: none;
+  justify-content: flex-end;
+}
+
+.nav_links li {
+  display: inline-block;
+  padding: 8px 20 px;;
+}
+
+.nav_links li a {
+  transition: all 0.3s case 0s;
+}
+
+.nav_links li a:link, a:visited {
+  text-decoration: none;
+  color: #000;
+}
+
+.nav_links li a:hover{
+  color: #FFB6C1;
+}
+
+/* Logo linksboven*/
+
+.logo {
+  margin-right: auto;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: 'Bungee Shade', cursive;
+  float: left;
+  color: #000;
+  font-size: 27px;
+  line-height: 40px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.logo_links li {
+  display: inline-block;
+  padding: 8px 20 px;;
+}
+
+.logo_links li a {
+  transition: all 0.3s case 0s;
+}
+
+.logo_links li a:link, a:visited {
+  text-decoration: none;
+  color: #000;
+}
+
+.logo_links li a:hover{
+  color: #000;
+}
+
+/* Lettertype per woorden etc. */
+div.a {
+  font-size: 290%;
+  font-family: 'Lexend Tera', sans-serif;
+  text-transform: uppercase;
+}
+
+div.b {
+  font-size: 410%;
+  font-family: 'Vidaloka', serif;
+}
+
+div.c {
+  font-size: 290%;
+  font-family: 'Vidaloka', serif;
+}
+
+div.d {
+  font-size: 100%;
+  font-family: 'Lexend Tera', sans-serif;
+  text-transform: uppercase;
+}
+
+/* Terug naar vorige pagina button*/
+
+a {
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover {
+  color: black;
+}
+
+.previous {
+  color: black;
+}
+
+/* etc */
+
+.column {
+  float: left;
+  width: 25%;
+  padding: 5px;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.center {
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table, th, td {
+  border: 1px solid black;
+} 
+
+.icons{
+  display:inline-block;
+ }
+
+/* Back to top button */
+#topBtn{
+  display: none;
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  font-size: 22px;
+  width: 50px;
+  height: 50px;
+  background: white;
+  opacity: 0.5;
+  color: black;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+
+#topBtn:hover, #topBtn:focus{
+  background: grey;
+  opacity: 0;
+  color: white;
+}
+
+.btnEntrance {
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  animation-name: btnEntrance;
+}
+/* zoomIn */
+/* @keyframes btnEntrance { 
+  from {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  to {
+    opacity: 1;
+  }    
+} */
+
+/* fadeInUp */
+@keyframes btnEntrance {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.btnExit {
+  animation-duration: 0.25s;
+  animation-fill-mode: both;  
+  animation-name: btnExit;
+}
+/* zoomOut */
+/* @keyframes btnExit {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+} */
+
+/* fadeOutDown */
+@keyframes btnExit {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+/* beer slider*/
+.beer-slider[data-beer-label]:after,
+.beer-reveal[data-beer-label]:after {
+    color: #333;
+    text-transform: uppercase;font-size: 0.75 rem;
+    font-weight: bold;
+}
+
+.beer-slider {
+    box-shadow: 0 12px 16px -8px black;
+    width: 500px;
+    height: 290px;
+}
